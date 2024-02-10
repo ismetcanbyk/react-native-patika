@@ -76,6 +76,7 @@ android {
 
     namespace "com.mytestapp"
     defaultConfig {
+        resValue "string", "build_config_package", "com.mytestapp"
         applicationId "com.mytestapp"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
@@ -115,5 +116,15 @@ dependencies {
         implementation jscFlavor
     }
 }
+
+project.ext.envConfigFiles = [
+  release: ".env.production",
+  dev: ".env.development",
+// Also you can different types of environments,
+  // for example staging.
+  stage: ".env.staging",
+];
+
+apply from: project(":react-native-config").projectDir.getPath() + "/dotenv.gradle"
 
 apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)

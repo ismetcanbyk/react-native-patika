@@ -9,15 +9,14 @@ import {
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import Welcome from './KebapFitness/pages/Welcome';
-import MemberSign from './KebapFitness/pages/MemberSign';
-import MemberResult from './KebapFitness/pages/MemberResult';
+import Products from './Store/pages/Products/Products';
+import Detail from './Store/pages/Detail/Detail';
 
 const Stack = createNativeStackNavigator();
 
 
-function App() {
 
+function App() {
 
   return (
     <NavigationContainer>
@@ -25,9 +24,9 @@ function App() {
         headerShown: false
       }
       }>
-        <Stack.Screen name="WelcomeScreen" component={Welcome} />
-        <Stack.Screen name='MemberSignScreen' component={MemberSign} />
-        <Stack.Screen name='MemberResultScreen' component={MemberResult} />
+        <Stack.Screen name="ProductPage" component={Products} />
+        <Stack.Screen name='DetailPage' component={Detail} />
+
       </Stack.Navigator>
     </NavigationContainer >
   );
