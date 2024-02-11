@@ -1,22 +1,23 @@
-import React, { useEffect, useState } from 'react'
-import { FlatList, Text, View } from 'react-native'
+import React from 'react'
+import { ActivityIndicator, FlatList, Text, View } from 'react-native'
 import styles from './Products.style'
 import Config from 'react-native-config'
-import axios from 'axios'
 import ProductCard from '../../components/ProductCard/ProductCard'
+import useFetch from '../../hooks/useFetch/useFetch'
 const Products = () => {
-    const [products, setProducts] = useState([])
 
-    useEffect(() => {
-        fetchData();
-    }, [])
+    const { error, loading, products } = useFetch(Config.API_URL)
 
-    const fetchData = async () => {
-        const { data } = await axios.get(Config.API_URL)
-        setProducts(data)
-    }
 
     const renderProduct = ({ item }) => <ProductCard product={item} />
+
+    if (loading) {
+        return <ActivityIndicator size="large" color="#0000ff" />
+    }
+
+    if (error) {
+        return <Text>{error}</Text>
+    }
 
     return (
         <View style={styles.container}>
