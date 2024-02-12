@@ -3,13 +3,13 @@ import { useEffect, useState } from "react";
 
 function useFetch(url) {
     const [error, setError] = useState(null)
-    const [products, setProducts] = useState([])
+    const [data, setdata] = useState([])
     const [loading, setLoading] = useState(true)
 
     const fetchData = async () => {
         try {
             const { data } = await axios.get(url)
-            setProducts(data)
+            setdata(data)
             setLoading(false)
         } catch (error) {
             setLoading(false)
@@ -20,7 +20,7 @@ function useFetch(url) {
 
     useEffect(() => { fetchData() }, [])
 
-    return { error, products, loading }
+    return { error, data, loading }
 }
 
 export default useFetch;

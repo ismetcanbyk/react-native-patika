@@ -7,3 +7,7 @@
 ## 2.ToDo App
 
 <img src='./screenshots/toDo.png' />
+
+## 3.Dükkan App
+
+<img src='./screenshots/store.png' />
