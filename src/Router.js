@@ -1,11 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
+import {
+  FlatList,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-
-import Categories from './Tarifka/pages/Categories';
-import Detail from './Tarifka/pages/Detail'
-import Meals from './Tarifka/pages/Meals';
+import Products from './Store/pages/Products/Products';
+import Detail from './Store/pages/Detail/Detail';
+import Login from './Store/pages/Login';
 
 const Stack = createNativeStackNavigator();
 
@@ -16,37 +22,33 @@ function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator >
-        <Stack.Screen name="CategoriesPage" component={Categories} options={{
-          title: 'Categories',
+        <Stack.Screen name="LoginPage" component={Login} options={{
+          title: 'Login',
           headerStyle: {
-            backgroundColor: 'White',
+            backgroundColor: '#64b5f6',
           },
           headerTitleStyle: {
-            color: '#ffa500',
-          },
-          headerTitleAlign: 'center',
+            color: 'white',
+          }
         }} />
-        <Stack.Screen name='MealsPage' component={Meals} options={{
-          title: 'Meals',
+        <Stack.Screen name="ProductPage" component={Products} options={{
+          title: 'Dükkan',
           headerStyle: {
-            backgroundColor: 'White',
+            backgroundColor: '#64b5f6',
           },
           headerTitleStyle: {
-            color: '#ffa500',
-          },
-          headerTintColor: '#ffa500',
-          headerTitleAlign: 'center',
+            color: 'white',
+          }
         }} />
         <Stack.Screen name='DetailPage' component={Detail} options={{
-          title: 'Meals',
+          title: 'Detay',
           headerStyle: {
-            backgroundColor: 'White',
+            backgroundColor: '#64b5f6',
           },
           headerTitleStyle: {
-            color: '#ffa500',
+            color: 'white',
           },
-          headerTintColor: '#ffa500',
-          headerTitleAlign: 'center',
+          headerTintColor: 'white',
         }} />
 
       </Stack.Navigator>
