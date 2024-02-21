@@ -6,8 +6,14 @@ export default StyleSheet.create({
         padding: 5,
         backgroundColor: '#e0e0e0',
         borderRadius: 10,
+        flexDirection: 'row',
+        alignItems: 'center',
     },
     input: {
         height: 40,
+        flex: 1
     },
+    icon: {
+
+    }
 })
