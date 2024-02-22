@@ -1,13 +1,33 @@
-import { View, Text, Image } from 'react-native';
-import React from 'react';
+import { View, Text, Image, Alert } from 'react-native';
+import React, { useEffect } from 'react';
 import style from './Login.style';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import { Formik } from 'formik';
+import usePost from '../../hooks/usePost';
+import Config from 'react-native-config';
 
-const Login = () => {
+
+const Login = ({ navigation }) => {
+
+    const { data, error, loading, postData, hasData } = usePost();
+
+    useEffect(() => {
+        if (error) {
+            Alert.alert('Hata', 'error')
+        }
+
+        if (data.token) {
+            if (data.status === 'error') {
+                Alert.alert('Hata', 'Hatalı Kullanıcı Adı veya Şifre');
+            } else {
+                navigation.replace('ProductPage');
+            }
+        }
+    }, [error, data, navigation])
+
     const handleLogin = (values) => {
-        console.log(values);
+        postData(Config.API_LOGIN_URL, values)
     }
 
     return (
@@ -24,7 +44,7 @@ const Login = () => {
                     <View style={style.body_container}>
                         <Input placeholder="Kullanıcı Adı " value={values.username} onChangeText={handleChange('username')} iconName={'account'} />
                         <Input placeholder="Şifre" value={values.password} onChangeText={handleChange('password')} iconName={'key'} isSecure />
-                        <Button title="Giriş Yap" onPress={handleSubmit} />
+                        <Button title="Giriş Yap" onPress={handleSubmit} loading={loading} />
                     </View>
                 )}
             </Formik>
