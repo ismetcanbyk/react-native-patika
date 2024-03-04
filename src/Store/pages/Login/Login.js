@@ -7,6 +7,8 @@ import { Formik } from 'formik';
 import usePost from '../../hooks/usePost';
 import Config from 'react-native-config';
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 const Login = ({ navigation }) => {
 
@@ -21,6 +23,7 @@ const Login = ({ navigation }) => {
             if (data.status === 'error') {
                 Alert.alert('Hata', 'Hatalı Kullanıcı Adı veya Şifre');
             } else {
+                AsyncStorage.setItem('@USER', JSON.stringify(userData));
                 navigation.replace('ProductPage');
             }
         }
@@ -51,6 +54,29 @@ const Login = ({ navigation }) => {
 
         </View>
     )
+}
+
+const userData = {
+    "address": {
+        "geolocation": {
+            "lat": "-37.3159",
+            "long": "81.1496"
+        },
+        "city": "kilcoole",
+        "street": "new road",
+        "number": 7682,
+        "zipcode": "12926-3874"
+    },
+    "id": 1,
+    "email": "john@gmail.com",
+    "username": "johnd",
+    "password": "m38rmF$",
+    "name": {
+        "firstname": "john",
+        "lastname": "doe"
+    },
+    "phone": "1-570-236-7033",
+    "__v": 0
 }
 
 export default Login
